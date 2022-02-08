@@ -1,0 +1,65 @@
+$main-color: #DA3131;
+$second-color: #2f222e;
+$back-color: #EEEEEE;
+$font-color: #301951;
+
+$main-font:  -apple-system, Helvetica, Arial, sans-serif;
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	background-color: $back-color;
+	color: $font-color;
+	fill: $font-color;
+	font-size: 20px;
+	font-family: $main-font;
+	scroll-behavior: smooth;
+}
+
+div, textarea, table, td, th, code, pre, samp {
+	word-wrap: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	hyphens: auto;
+}
+
+img, table, td, blockquote, code, pre, textarea, input, video {
+    max-width: 100%;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+img {
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+a img {
+	border: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: $font-color;
+	fill: $main-color;
+	word-break: break-word;
+}
+
+strong {
+	color: $main-color;
+}
+
+main {
+	display: block; //For browser that doesn't support main
+}
