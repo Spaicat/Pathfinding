@@ -1,8 +1,16 @@
+@import "normalize.css";
+
 $main-color: #DA3131;
 $second-color: #2f222e;
 $back-color: #EEEEEE;
 $font-color: #301951;
 
+$border-color: #464646;
+$cell-color: #fafafa;
+$wall-color: #464646;
+$start-color: #5ad47f;
+
+$menu-size: 300px;
 $main-font:  -apple-system, Helvetica, Arial, sans-serif;
 
 * {
@@ -11,15 +19,15 @@ $main-font:  -apple-system, Helvetica, Arial, sans-serif;
 
 html,
 body {
-	width: 100%;
-	padding: 0;
-	margin: 0;
+	display: block;
 	background-color: $back-color;
 	color: $font-color;
 	fill: $font-color;
 	font-size: 20px;
 	font-family: $main-font;
-	scroll-behavior: smooth;
+	min-height: 100vh;
+	height: 100%;
+	overflow: auto;
 }
 
 div, textarea, table, td, th, code, pre, samp {
@@ -39,13 +47,6 @@ a {
 	color: inherit;
 	text-decoration: none;
 }
-
-img {
-	width: auto;
-	max-width: 100%;
-	height: auto;
-	vertical-align: middle;
-}
 a img {
 	border: 0;
 }
@@ -56,10 +57,36 @@ h1, h2, h3, h4, h5, h6 {
 	word-break: break-word;
 }
 
-strong {
-	color: $main-color;
+
+.wrapper {
+	width: 100%;
+	height: 100%;
+	padding-left: $menu-size;
+}
+.layout {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	.grid {
+		border-collapse: collapse;
+		background-color: $cell-color;
+		td {
+			border: 1px solid $border-color;
+		}
+		.wall {
+			background-color: $wall-color;
+		}
+		.start {
+			background-color: $start-color;
+		}
+	}
 }
 
-main {
-	display: block; //For browser that doesn't support main
+.header {
+	position: fixed;
+	height: 100%;
+	width: $menu-size;
 }
