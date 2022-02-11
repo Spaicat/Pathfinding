@@ -23,6 +23,13 @@ class Grid {
 	}
 
 	addEvent() {
+		const removeSelection = (event) => {
+			event.preventDefault();
+			this.isMouseDown = false;
+			this.cellSelected = null;
+		}
+		this.grid.addEventListener("mouseup", removeSelection);
+		this.grid.addEventListener("mouseleave", removeSelection);
 		this.grid.addEventListener("mousedown", (event) => {
 			event.preventDefault();
 			this.isMouseDown = true;
@@ -40,13 +47,6 @@ class Grid {
 				this.putWall(this.cellSelected);
 			}
 		});
-		const removeSelection = (event) => {
-			event.preventDefault();
-			this.isMouseDown = false;
-			this.cellSelected = null;
-		}
-		this.grid.addEventListener("mouseup", removeSelection);
-		this.grid.addEventListener("mouseleave", removeSelection);
 		this.grid.addEventListener("mousemove", (event) => {
 			event.preventDefault();
 		
@@ -134,23 +134,51 @@ class Grid {
 			&& coord.y >= 0 && coord.y < this.width;
 	}
 
+	getNeighbors(coord) {
+		let neighbors = [];
+
+		//West, East, South, North
+		let directions = [new Coord(-1, 0), new Coord(1, 0),
+			new Coord(0, -1), new Coord(0, 1)];
+
+		directions.forEach((dir) => {
+			let current = new Coord(coord.x + dir.x, coord.y + dir.y);
+			if (this.inRange(current)) {
+				let cell = this.array[current.x][current.y];
+				if (!cell.classList.contains("wall"))
+					neighbors.push({coord: current, html: cell});
+			}
+		});
+
+		return neighbors;
+	}
+
+	putClass(coord, className) {
+		this.array[coord.x][coord.y].className = className;
+	}
 	putUniqueClass(coord, className) {
 		let cell = this.grid.querySelector("." + className);
 		if (cell !== null)
 			cell.classList.remove(className);
-		this.array[coord.x][coord.y].className = className;
+		this.putClass(coord, className);
 	}
 	putStart(coord) {
 		this.putUniqueClass(coord, "start");
+
+		//Test getNeighbors
+		this.grid.querySelectorAll(".visited").forEach(e => e.classList.remove("visited"))
+		this.getNeighbors(coord).forEach((elt) => {
+			if (!elt.html.classList.contains("end"))
+				this.putVisited(elt.coord);
+		});
 	}
 	putEnd(coord) {
 		this.putUniqueClass(coord, "end");
 	}
 	putWall(coord) {
-		let cell = this.array[coord.x][coord.y];
-		if (cell.classList.contains("wall"))
-			cell.classList.remove("wall");
-		else
-			cell.classList.add("wall");
+		this.putClass(coord, "wall");
+	}
+	putVisited(coord) {
+		this.putClass(coord, "visited");
 	}
 }

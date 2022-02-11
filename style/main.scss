@@ -11,6 +11,7 @@ $wall-color: #e7e7e7;
 $wall-bd-color: #c3c3c3;
 $start-color: #5ad47f;
 $end-color: #da4c53;
+$visited-color: #7994db;
 
 $menu-size: 300px;
 $main-font:  -apple-system, Helvetica, Arial, sans-serif;
@@ -87,6 +88,9 @@ h1, h2, h3, h4, h5, h6 {
 		}
 		.end {
 			background-color: $end-color;
+		}
+		.visited {
+			background-color: $visited-color;
 		}
 	}
 }
