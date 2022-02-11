@@ -10,6 +10,10 @@ class Coord {
 			return object != null && typeof object === 'object';
 		}
 
+		if (!isObject(coord1) || !isObject(coord2)) {
+			return false;
+		}
+		
 		const keys1 = Object.keys(coord1);
 		const keys2 = Object.keys(coord2);
 		if (keys1.length !== keys2.length) {
