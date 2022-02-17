@@ -1,7 +1,7 @@
 class Grid {
-	constructor(wrapper, cellSize = 40) {
-		this.width = 0;
-		this.height = 0;
+	constructor(wrapper, width, height, cellSize = 40) {
+		this.width = width;
+		this.height = height;
 		this.grid = null;
 		this.array = null;
 		this.wrapper = wrapper;
@@ -11,15 +11,11 @@ class Grid {
 		this.cellSelected = null;
 		this.typeSelected = false;
 
-		this.build();
-		window.addEventListener("resize", () => this.handleResize());
-		this.handleResize();
-	}
-
-	build() {
 		this.drawGrid();
 		this.addEvent();
-		console.log("New grid created");
+			
+		this.putStart(new Coord(Math.floor(height / 2),	Math.floor(width / 4)));
+		this.putEnd(new Coord(Math.floor(height / 2), Math.floor(width / 1.25)));
 	}
 
 	addEvent() {
@@ -105,28 +101,6 @@ class Grid {
 			gridFragment.appendChild(row);
 		}
 		this.grid.appendChild(gridFragment);
-	}
-
-	handleResize() {
-		let width = Math.floor((this.gridLayout.clientWidth) / this.cellSize);
-		let height = Math.floor((this.gridLayout.clientHeight) / this.cellSize);
-		if (height != this.height || width != this.width) {
-			this.width = width;
-			this.height = height;
-			this.gridLayout.remove();
-			this.build();
-			
-			let startCell = new Coord(
-				Math.floor(height / 2),
-				Math.floor(width / 4)
-			);
-			this.putStart(startCell);
-			let endCell = new Coord(
-				Math.floor(height / 2),
-				Math.floor(width / 1.25)
-			);
-			this.putEnd(endCell);
-		}
 	}
 
 	inRange(coord) {
