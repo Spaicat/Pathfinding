@@ -13,9 +13,11 @@ class Grid {
 
 		this.drawGrid();
 		this.addEvent();
-			
-		this.putStart(new Coord(Math.floor(height / 2),	Math.floor(width / 4)));
-		this.putEnd(new Coord(Math.floor(height / 2), Math.floor(width / 1.25)));
+
+		this.start = new Coord(Math.floor(height / 2),	Math.floor(width / 4));
+		this.end = new Coord(Math.floor(height / 2), Math.floor(width / 1.25));
+		this.putStart(this.start);
+		this.putEnd(this.end);
 	}
 
 	addEvent() {
@@ -42,6 +44,7 @@ class Grid {
 				this.cellSelected = this.getCellCoord(event);
 				this.putWall(this.cellSelected);
 			}
+			grid.findPath(breadthFirstSearch);
 		});
 		this.grid.addEventListener("mousemove", (event) => {
 			event.preventDefault();
@@ -60,6 +63,7 @@ class Grid {
 					else if (this.typeSelected == "wall") {
 						this.putWall(this.cellSelected);
 					}
+					grid.findPath(breadthFirstSearch);
 				}
 			}
 		});
@@ -103,12 +107,37 @@ class Grid {
 		this.grid.appendChild(gridFragment);
 	}
 
+	findPath(callback) {
+		this.clearPath();
+		let algo = new callback(this);
+		algo.find();
+	}
+
+	clearPath() {
+		clearInterval(intervalSearch);
+		this.array.forEach((line) => {
+			line.forEach((cell) => {
+				if (cell.classList.contains("visited") || cell.classList.contains("path"))
+					cell.className = "";
+			});
+		});
+	}
+	clearWall() {
+		this.array.forEach((line) => {
+			line.forEach((cell) => {
+				if (cell.classList.contains("wall"))
+					cell.className = "";
+			});
+		});
+	}
+
 	inRange(coord) {
 		return coord.x >= 0 && coord.x < this.height
 			&& coord.y >= 0 && coord.y < this.width;
 	}
 
 	getNeighbors(coord) {
+		this.test = false;
 		let neighbors = [];
 
 		//West, East, South, North
@@ -120,7 +149,8 @@ class Grid {
 			if (this.inRange(current)) {
 				let cell = this.array[current.x][current.y];
 				if (!cell.classList.contains("wall"))
-					neighbors.push({coord: current, html: cell});
+					neighbors.push(current);
+					//neighbors.push({coord: current, html: cell});
 			}
 		});
 
@@ -131,6 +161,8 @@ class Grid {
 		this.array[coord.x][coord.y].className = className;
 	}
 	putUniqueClass(coord, className) {
+		this.clearPath();
+		
 		let cell = this.grid.querySelector("." + className);
 		if (cell !== null)
 			cell.classList.remove(className);
@@ -138,21 +170,29 @@ class Grid {
 	}
 	putStart(coord) {
 		this.putUniqueClass(coord, "start");
-
-		//Test getNeighbors
-		this.grid.querySelectorAll(".visited").forEach(e => e.classList.remove("visited"))
-		this.getNeighbors(coord).forEach((elt) => {
-			if (!elt.html.classList.contains("end"))
-				this.putVisited(elt.coord);
-		});
+		this.start = coord;
 	}
 	putEnd(coord) {
 		this.putUniqueClass(coord, "end");
+		this.end = coord;
 	}
 	putWall(coord) {
-		this.putClass(coord, "wall");
+		this.clearPath();
+
+		let cell = this.array[coord.x][coord.y];
+		if (cell.classList.contains("wall"))
+			cell.classList.remove("wall");
+		else if (cell.className === "")
+			this.putClass(coord, "wall");
 	}
 	putVisited(coord) {
-		this.putClass(coord, "visited");
+		let cell = this.array[coord.x][coord.y];
+		if (cell.className === "")
+			this.putClass(coord, "visited");
+	}
+	putPath(coord) {
+		let cell = this.array[coord.x][coord.y];
+		if (cell.className === "visited")
+			this.putClass(coord, "path");
 	}
 }

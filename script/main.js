@@ -11,9 +11,13 @@ window.onload = () => {
 		let height = Math.floor((grid.gridLayout.clientHeight) / cellSize);
 		if (height != currHeight || width != currWidth) {
 			grid.gridLayout.remove();
-			grid = new Grid(wrapper, width, height, 40);
+			grid = new Grid(wrapper, width, height, cellSize);
+			currHeight = height;
+			currWidth = width;
 		}
 	}
 	window.addEventListener("resize", () => handleResize());
 	handleResize();
+
+	grid.findPath(breadthFirstSearch);
 }

@@ -5,13 +5,14 @@ $second-color: #2f222e;
 $back-color: #161616;
 $font-color: #e6e6e6;
 
-$border-color: #707070;
+$border-color: $back-color;
 $cell-color: #494949;
 $wall-color: #e7e7e7;
 $wall-bd-color: #c3c3c3;
 $start-color: #5ad47f;
 $end-color: #da4c53;
 $visited-color: #7994db;
+$path-color: #ecea6b;
 
 $menu-size: 300px;
 $main-font:  -apple-system, Helvetica, Arial, sans-serif;
@@ -89,8 +90,28 @@ h1, h2, h3, h4, h5, h6 {
 		.end {
 			background-color: $end-color;
 		}
+		.path {
+			background-color: $path-color;
+			animation: visitedAnimation 1s;
+		}
 		.visited {
 			background-color: $visited-color;
+			animation: visitedAnimation 1s;
+		}
+		@keyframes visitedAnimation {
+			0% {
+				transform: scale(.3);
+				border-radius: 50%;
+				opacity: .25;
+			}
+			75% {
+				transform: scale(1.2);
+				opacity: .75;
+			}
+			100% {
+				transform: scale(1.0);
+				opacity: 1;
+			}
 		}
 	}
 }
