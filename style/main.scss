@@ -78,7 +78,34 @@ h1, h2, h3, h4, h5, h6 {
 		border-collapse: collapse;
 		background-color: $cell-color;
 		td {
-			border: 1px solid $border-color;
+			//border: 1px solid $border-color;
+		}
+		.visited {
+			position: relative;
+			//animation: visitedAnimation 1s;
+			//border-radius: 50%;
+			//transform: scale(0.5);
+			&::before {
+				content: " ";
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				border-radius: 50%;
+				background-color: $visited-color;
+				animation: visitedAnimTranslate 1s;
+			}
+		}
+		.path {
+			background-color: $path-color;
+			animation: visitedAnim 1s;
+		}
+		.start, .wall, .end {
+			animation: none;
+			border-radius: 0;
+			transform: none;
 		}
 		.wall {
 			background-color: $wall-color;
@@ -90,18 +117,23 @@ h1, h2, h3, h4, h5, h6 {
 		.end {
 			background-color: $end-color;
 		}
-		.path {
-			background-color: $path-color;
-			animation: visitedAnimation 1s;
+		@keyframes visitedAnimTranslate {
+			0% {
+				transform: translate(-50%,-50%) scale(.3);
+				opacity: .25;
+			}
+			75% {
+				transform: translate(-50%,-50%) scale(1.2);
+				opacity: .75;
+			}
+			100% {
+				transform: translate(-50%,-50%) scale(1);
+				opacity: 1;
+			}
 		}
-		.visited {
-			background-color: $visited-color;
-			animation: visitedAnimation 1s;
-		}
-		@keyframes visitedAnimation {
+		@keyframes visitedAnim {
 			0% {
 				transform: scale(.3);
-				border-radius: 50%;
 				opacity: .25;
 			}
 			75% {
@@ -109,7 +141,6 @@ h1, h2, h3, h4, h5, h6 {
 				opacity: .75;
 			}
 			100% {
-				transform: scale(1.0);
 				opacity: 1;
 			}
 		}

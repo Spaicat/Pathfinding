@@ -1,5 +1,5 @@
 class Grid {
-	constructor(wrapper, width, height, cellSize = 40) {
+	constructor(wrapper, width, height, cellSize = 40, algo = AStar) {
 		this.width = width;
 		this.height = height;
 		this.grid = null;
@@ -18,6 +18,8 @@ class Grid {
 		this.end = new Coord(Math.floor(height / 2), Math.floor(width / 1.25));
 		this.putStart(this.start);
 		this.putEnd(this.end);
+
+		this.algo = algo;
 	}
 
 	addEvent() {
@@ -44,7 +46,7 @@ class Grid {
 				this.cellSelected = this.getCellCoord(event);
 				this.putWall(this.cellSelected);
 			}
-			grid.findPath(breadthFirstSearch);
+			grid.findPath(this.algo);
 		});
 		this.grid.addEventListener("mousemove", (event) => {
 			event.preventDefault();
@@ -63,10 +65,14 @@ class Grid {
 					else if (this.typeSelected == "wall") {
 						this.putWall(this.cellSelected);
 					}
-					grid.findPath(breadthFirstSearch);
+					grid.findPath(this.algo);
 				}
 			}
 		});
+	}
+
+	getDOMCell(coord) {
+		return this.array[coord.x][coord.y]
 	}
 
 	getCellCoord(event) {
