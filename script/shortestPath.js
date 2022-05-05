@@ -42,7 +42,7 @@ class ShortestPath {
 	}
 }
 
-class breadthFirst extends ShortestPath {
+class BreadthFirst extends ShortestPath {
 	find() {
 		let queue = [];
 		queue.push(this.start);

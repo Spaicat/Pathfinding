@@ -9,14 +9,30 @@
 <body>
 	<header class="header">
 		<h1>Pathfinding</h1>
+		<select name="path" id="path">
+			<option value="BreadthFirst">Breadth First</option>
+			<option value="GreedyBestFirst">Greedy Best First</option>
+			<option value="Astar">A*</option>
+		</select>
+		<button onclick="search()">Search</button>
+		<select name="maze" id="maze">
+			<option value="BreadthFirst">Kruskal</option>
+		</select>
+		<button onclick="build()">Build</button>
+		<button onclick="clearAll()">Clear</button>
 	</header>
 	<section class="wrapper">
 	</section>
 </body>
+<!--Data Structures-->
 <script src="script/priorityQueue.js"></script>
 <script src="script/stablePriorityQueue.js"></script>
+<script src="script/unionFind.js"></script>
 <script src="script/coord.js"></script>
+<!--Algorithms-->
 <script src="script/shortestPath.js"></script>
+<script src="script/maze.js"></script>
+<!--View-->
 <script src="script/grid.js"></script>
 <script src="script/main.js"></script>
 </html>

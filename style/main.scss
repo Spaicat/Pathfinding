@@ -6,13 +6,13 @@ $back-color: #161616;
 $font-color: #e6e6e6;
 
 $border-color: $back-color;
-$cell-color: #494949;
-$wall-color: #e7e7e7;
-$wall-bd-color: #c3c3c3;
+$cell-color: #e7e7e7;
+$wall-color: #353535;
+$wall-bd-color: #494949;
 $start-color: #5ad47f;
 $end-color: #da4c53;
 $visited-color: #7994db;
-$path-color: #ecea6b;
+$path-color: #ffeb35;
 
 $menu-size: 300px;
 $main-font:  -apple-system, Helvetica, Arial, sans-serif;
@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%,-50%);
-				border-radius: 50%;
+				border-radius: 6px;
 				background-color: $visited-color;
 				animation: visitedAnimTranslate 1s;
 			}
@@ -149,6 +149,26 @@ h1, h2, h3, h4, h5, h6 {
 
 .header {
 	position: fixed;
+	padding: 5px 20px;
 	height: 100%;
 	width: $menu-size;
+	select {
+		cursor: pointer;
+		margin-bottom: 15px;
+		padding: 7px 40px 7px 12px;
+		width: 100%;
+		border: 1px solid #e8eaed;
+		border-radius: 5px;
+		background: #fff;
+		box-shadow: 0 1px 3px -2px #9098a9;
+		font-size: 16px;
+		transition: all 150ms ease;
+	}
+	button {
+		cursor: pointer;
+		margin-bottom: 15px;
+		width: 100%;
+		border: 1px solid #e8eaed;
+		border-radius: 5px;
+	}
 }

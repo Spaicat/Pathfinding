@@ -1,5 +1,5 @@
 class Grid {
-	constructor(wrapper, width, height, cellSize = 40, algo = AStar) {
+	constructor(wrapper, width, height, cellSize = 40, algo = AStar, maze = Kruskal) {
 		this.width = width;
 		this.height = height;
 		this.grid = null;
@@ -14,12 +14,21 @@ class Grid {
 		this.drawGrid();
 		this.addEvent();
 
-		this.start = new Coord(Math.floor(height / 2),	Math.floor(width / 4));
-		this.end = new Coord(Math.floor(height / 2), Math.floor(width / 1.25));
+		// this.start = new Coord(
+		// 	(Math.floor(height / 2) - (Math.floor(height / 2) % 2) + 1),
+		// 	Math.floor(width / 4) - (Math.floor(width / 4) % 2) + 1
+		// );
+		// this.end = new Coord(
+		// 	(Math.floor(height / 2) - (Math.floor(height / 2) % 2) + 1),
+		// 	Math.floor(width / 1.25) - (Math.floor(width / 1.25) % 2) + 1
+		// );
+		this.start = new Coord(1, 1);
+		this.end = new Coord(this.height - 2, this.width - 2);
 		this.putStart(this.start);
 		this.putEnd(this.end);
 
 		this.algo = algo;
+		this.maze = maze;
 	}
 
 	addEvent() {
@@ -111,12 +120,23 @@ class Grid {
 			gridFragment.appendChild(row);
 		}
 		this.grid.appendChild(gridFragment);
+
+		console.log("New Grid Generated");
 	}
 
 	findPath(callback) {
 		this.clearPath();
+		this.algo = callback;
 		let algo = new callback(this);
 		algo.find();
+	}
+
+	generateMaze(callback) {
+		this.clearPath();
+		this.clearWall();
+		this.maze = callback;
+		let algo = new callback(this);
+		algo.generate();
 	}
 
 	clearPath() {
@@ -129,6 +149,7 @@ class Grid {
 		});
 	}
 	clearWall() {
+		clearInterval(intervalMaze);
 		this.array.forEach((line) => {
 			line.forEach((cell) => {
 				if (cell.classList.contains("wall"))
