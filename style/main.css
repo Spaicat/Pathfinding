@@ -82,19 +82,30 @@ h1, h2, h3, h4, h5, h6 {
   animation: visitedAnim 1s;
 }
 .layout .grid .start, .layout .grid .wall, .layout .grid .end {
-  animation: none;
   border-radius: 0;
   transform: none;
+  animation: none;
 }
 .layout .grid .wall {
   background-color: #353535;
   border: 1px solid #494949;
+  animation: classicAppear ease-out 0.25s;
 }
 .layout .grid .start {
   background-color: #5ad47f;
 }
 .layout .grid .end {
   background-color: #da4c53;
+}
+@keyframes classicAppear {
+  from {
+    transform: scale(0.3);
+    opacity: 0.25;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 @keyframes visitedAnimTranslate {
   0% {

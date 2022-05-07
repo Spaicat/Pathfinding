@@ -9,7 +9,7 @@ let mazeGeneratorAlgo = null;
 
 window.onload = () => {
 	let wrapper = document.querySelector(".wrapper");
-	pathFinderAlgo = AStar;
+	pathFinderAlgo = BreadthFirst;
 	mazeGeneratorAlgo = Kruskal;
 	grid = new Grid(wrapper, currWidth, currHeight, cellSize, pathFinderAlgo);
 
@@ -55,6 +55,12 @@ build = () => {
 	switch (mazeGeneratorIndex) {
 		case 0:
 			mazeGeneratorAlgo = Kruskal;
+			break;
+		case 1:
+			mazeGeneratorAlgo = Prim;
+			break;
+		case 2:
+			mazeGeneratorAlgo = BinaryTree;
 			break;
 	}
 

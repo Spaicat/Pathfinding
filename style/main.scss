@@ -103,19 +103,30 @@ h1, h2, h3, h4, h5, h6 {
 			animation: visitedAnim 1s;
 		}
 		.start, .wall, .end {
-			animation: none;
 			border-radius: 0;
 			transform: none;
+			animation: none;
 		}
 		.wall {
 			background-color: $wall-color;
 			border: 1px solid $wall-bd-color;
+			animation: classicAppear ease-out .25s;
 		}
 		.start {
 			background-color: $start-color;
 		}
 		.end {
 			background-color: $end-color;
+		}
+		@keyframes classicAppear {
+			from {
+				transform: scale(.3);
+				opacity: .25;
+			}
+			to {
+				transform: scale(1);
+				opacity: 1;
+			}
 		}
 		@keyframes visitedAnimTranslate {
 			0% {

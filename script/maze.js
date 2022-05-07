@@ -69,3 +69,48 @@ class Kruskal extends Maze {
 		}, 10);
 	}
 }
+
+class BinaryTree extends Maze {
+	generate() {
+		let cells = [];
+		let edges = [];
+
+		// Pick all edges (walls between each empty cell)
+		for (let i = 0; i < this.grid.height; i++) {
+			for (let j = 0; j < this.grid.width; j++) {
+				let cell = new Coord(i, j);
+				if (i % 2 && j % 2) {
+					cells.push(cell);
+					if (i < this.grid.height-2) {
+						if (j < this.grid.width-2)
+							edges.push([cell, new Coord(i+1, j), new Coord(i, j+1)])
+						else
+							edges.push([cell, new Coord(i+1, j), new Coord(i+1, j)])
+					}
+					else
+						edges.push([cell, new Coord(i, j+1), new Coord(i, j+1)])
+				}
+				else {
+					this.grid.putWall(cell);
+				}
+			}
+		}
+
+		let connected = [];
+		for (let i = 0; i < cells.length-1; i++) {
+			let rand = ~~(Math.random() * 2) + 1;
+			let edge = edges[i][rand];
+			connected.push(edge);
+		}
+
+		intervalMaze = setInterval(() => {
+			if (connected.length === 0) {
+				clearInterval(intervalMaze);
+			}
+			else {
+				let cell = connected.shift();
+				this.grid.putWall(cell);
+			}
+		}, 10);
+	}
+}
