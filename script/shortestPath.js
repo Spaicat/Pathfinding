@@ -109,6 +109,7 @@ class AStar extends ShortestPath {
 				let coordKey = this.coordToKey(next);
 				let cost = costOfCells[this.coordToKey(current)] + 1;
 
+				// Add to visited cells if not already done
 				if (!listVisited.some(cellVisited => Coord.isEqual(cellVisited, next)))
 					listVisited.push(next);
 
@@ -159,8 +160,11 @@ class GreedyBestFirst extends ShortestPath {
 				let next = neighbors[i];
 				let coordKey = this.coordToKey(next);
 				let cost = costOfCells[this.coordToKey(current)] + 1;
-				if (!listVisited.includes(next))
+
+				// Add to visited cells if not already done
+				if (!listVisited.some(cellVisited => Coord.isEqual(cellVisited, next)))
 					listVisited.push(next);
+				
 				if (!(coordKey in costOfCells) || cost < costOfCells[coordKey]) {
 					predOfCells[coordKey] = current;
 					costOfCells[coordKey] = cost;
