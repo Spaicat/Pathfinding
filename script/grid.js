@@ -177,7 +177,6 @@ class Grid {
 				let cell = this.array[current.x][current.y];
 				if (!cell.classList.contains("wall"))
 					neighbors.push(current);
-					//neighbors.push({coord: current, html: cell});
 			}
 		});
 
@@ -211,6 +210,11 @@ class Grid {
 			cell.classList.remove("wall");
 		else if (cell.className === "")
 			this.putClass(coord, "wall");
+	}
+	removeWall(coord) {
+		let cell = this.array[coord.x][coord.y];
+		if (cell.classList.contains("wall"))
+			cell.classList.remove("wall");
 	}
 	putVisited(coord) {
 		let cell = this.array[coord.x][coord.y];

@@ -4,6 +4,10 @@ class Coord {
 		this.y = y;
 	}
 
+	toString() {
+		return this.x + "_" + this.y;
+	}
+
 	//Deep equality
 	static isEqual(coord1, coord2) {
 		const isObject = (object) => {
