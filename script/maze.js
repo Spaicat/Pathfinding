@@ -117,23 +117,10 @@ class BinaryTree extends Maze {
 }
 
 class Prim extends Maze {
-	inRange(coord) {
-		return coord.x >= 1 && coord.x < this.height-1
-			&& coord.y >= 1 && coord.y < this.width-1;
-	}
-	getNeighborsinRange(coord) {
-		let neighborsCurrent = [new Coord(i+2, j), new Coord(i-2, j), new Coord(i, j+2), new Coord(i, j-2)];
-		neighbors[cell.toString()] = neighborsCurrent.filter((neighbor) => this.inRange(neighbor));
-		
-	}
-
 	generate() {
 		let maze = [];
 		let cells = [];
-		let edges = [];
-		let neighbors = [];
 
-		// Pick all edges (walls between each empty cell)
 		for (let i = 0; i < this.height; i++) {
 			maze.push([]);
 			for (let j = 0; j < this.width; j++) {
@@ -147,32 +134,37 @@ class Prim extends Maze {
 			}
 		}
 
+		// Pick a random cell
 		let randomCell = cells[~~(Math.random() * cells.length)];
 		maze[randomCell.x][randomCell.y] = "path";
 		let visited = [randomCell];
 
+		// Add walls of the cell to the wall list
 		let walls = [];
 		if (randomCell.x+1 < this.height-1)	walls.push(new Coord(randomCell.x+1, randomCell.y));
 		if (randomCell.x-1 > 0)				walls.push(new Coord(randomCell.x-1, randomCell.y));
 		if (randomCell.y+1 < this.width-1)	walls.push(new Coord(randomCell.x, randomCell.y+1));
 		if (randomCell.y-1 > 0)				walls.push(new Coord(randomCell.x, randomCell.y-1));
 
-		// While there is walls in list
-		while (walls.length > 0 && compteurMax > 0) {
+		// While there are walls in list
+		while (walls.length > 0) {
 			// Pick a random wall from list
 			let wallIndex = ~~(Math.random() * walls.length);
 			let wall = walls[wallIndex];
 
-			let uc = [];
+			// If only one of the two cells that the wall divides is visited
+			let uc = []; // Unvisited cells
 			if(wall.x+1 < this.height-1	&& maze[wall.x+1][wall.y] === "path") uc.push(new Coord(wall.x-1, wall.y));
 			if(wall.x-1 > 0				&& maze[wall.x-1][wall.y] === "path") uc.push(new Coord(wall.x+1, wall.y));
 			if(wall.y+1 < this.width-1	&& maze[wall.x][wall.y+1] === "path") uc.push(new Coord(wall.x, wall.y-1));
 			if(wall.y-1 > 0				&& maze[wall.x][wall.y-1] === "path") uc.push(new Coord(wall.x, wall.y+1));
 
 			if (uc.length === 1) {
+				// Make the wall a passage and mark the unvisited cell as part of the maze.
 				maze[wall.x][wall.y] = "path";
 				visited.push(wall);
 
+				// Add the neighboring walls of the cell to the wall list.
 				if (uc[0].x >=0 && uc[0].x <this.height && uc[0].y >=0 && uc[0].y<this.width) {
 					maze[uc[0].x][uc[0].y] = "path";
 					visited.push(uc[0]);
