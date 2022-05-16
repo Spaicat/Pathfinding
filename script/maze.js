@@ -7,10 +7,14 @@ class Maze {
 		this.height = grid.height;
 		this.start = grid.start;
 		this.end = grid.end;
-	}
-}
 
-class Kruskal extends Maze {
+		// Make dimensions odd
+		/*width -= width % 2;
+		width++;
+		height -= height % 2;
+		height++;*/
+	}
+
 	shuffle(array) {
 		let newArray = array;
 		// Durstendfeld shuffle
@@ -20,7 +24,9 @@ class Kruskal extends Maze {
 		}
 		return newArray;
 	}
+}
 
+class Kruskal extends Maze {
 	generate() {
 		let cells = [];
 		let edges = [];
@@ -187,6 +193,74 @@ class Prim extends Maze {
 			else {
 				let cell = visited.shift();
 				this.grid.putWall(cell);
+			}
+		}, 10);
+	}
+}
+
+class RecursiveBacktracker extends Maze {
+	constructor(grid) {
+		super(grid);
+		this.maze = [];
+	}
+
+	inBound(coord) {
+		return coord.x >= 0 && coord.x < this.height
+			&& coord.y >= 0 && coord.y < this.width;
+	}
+
+	isWall(coord) {
+		return this.inBound(coord) && this.maze[coord.x][coord.y] === "wall";
+	}
+
+	recursive(currentCoord) {
+		let path = [currentCoord];
+		this.maze[currentCoord.x][currentCoord.y] = "path";
+
+		let directions = [new Coord(1, 0), new Coord(-1, 0), new Coord(0, 1), new Coord(0, -1)];
+		directions = this.shuffle(directions);
+
+		while (directions.length > 0) {
+			let directionToTry = directions.pop();
+
+			let node = new Coord(currentCoord.x + (directionToTry.x * 2), currentCoord.y + (directionToTry.y * 2));
+
+			if (this.isWall(node)) {
+				let linkCell = new Coord(currentCoord.x + directionToTry.x, currentCoord.y + directionToTry.y);
+				this.maze[linkCell.x][linkCell.y] = "path";
+                path.push(linkCell);
+
+				path.push(...this.recursive(node));
+			}
+		}
+
+		return path;
+	}
+
+	generate() {
+		for (let i = 0; i < this.height; i++) {
+			this.maze.push([])
+			for (let j = 0; j < this.width; j++) {
+				let cell = new Coord(i, j);
+				this.grid.putWall(cell);
+				this.maze[i][j] = "wall";
+			}
+		}
+
+		// Pick a random starting cell but odd number -> To have a wall at each border
+		let start = new Coord(
+			~~(Math.random() * this.height/2)*2+1,
+			~~(Math.random() * this.width/2)*2+1
+		);
+		let path = this.recursive(start);
+
+		intervalMaze = setInterval(() => {
+			if (path.length === 0) {
+				clearInterval(intervalMaze);
+			}
+			else {
+				let cells = path.shift();
+				this.grid.removeWall(cells);
 			}
 		}, 10);
 	}

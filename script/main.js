@@ -60,6 +60,12 @@ build = () => {
 			mazeGeneratorAlgo = Prim;
 			break;
 		case 2:
+			mazeGeneratorAlgo = RecursiveBacktracker;
+			break;
+		case 3:
+			mazeGeneratorAlgo = RecursiveDivision;
+			break;
+		case 4:
 			mazeGeneratorAlgo = BinaryTree;
 			break;
 	}

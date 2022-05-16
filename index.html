@@ -10,7 +10,7 @@
 	<header class="header">
 		<h1>Pathfinding</h1>
 		<select name="path" id="path">
-			<option value="BreadthFirst">Breadth First</option>
+			<option value="BreadthFirst">Breadth First (Dijkstra)</option>
 			<option value="GreedyBestFirst">Greedy Best First</option>
 			<option value="Astar">A*</option>
 		</select>
@@ -18,6 +18,8 @@
 		<select name="maze" id="maze">
 			<option value="Kruskal">Kruskal</option>
 			<option value="Prim">Prim</option>
+			<option value="RecursiveBacktracker">Recursive Backtracker</option>
+			<option value="RecursiveDivision">Recursive Division</option>
 			<option value="BinaryTree">Binary Tree</option>
 		</select>
 		<button onclick="build()">Build</button>
