@@ -265,3 +265,121 @@ class RecursiveBacktracker extends Maze {
 		}, 10);
 	}
 }
+
+class RecursiveDivision extends Maze {
+	constructor(grid) {
+		super(grid);
+		this.maze = [];
+	}
+
+	divide(iCoords, jCoords, orientation) {
+		let walls = [];
+		let iDim = iCoords.y - iCoords.x;
+		let jDim = jCoords.y - jCoords.x;
+
+		if (iDim <= 0 || jDim <= 0) return [];
+
+		if (orientation === "h") {
+			let split;
+			do {
+				split = Math.floor(Math.random() * (iDim + 1)) + iCoords.x;
+			} while (split % 2);
+
+			let hole;
+			do {
+				hole = Math.floor(Math.random() * (jDim + 1)) + jCoords.x;
+			} while (!(hole % 2));
+
+			for (let j = jCoords.x; j <= jCoords.y; j++) {
+				if (j !== hole) {
+					this.maze[split][j] = 1;
+					walls.push(new Coord(split, j));
+				}
+			}
+
+			let first = this.divide(
+				new Coord(iCoords.x, split - 1),
+				jCoords,
+				this.getOrientation(split - iCoords.x - 1, jDim)
+			);
+			let second = this.divide(
+				new Coord(split + 1, iCoords.y),
+				jCoords,
+				this.getOrientation(iCoords.y - split - 1, jDim)
+			);
+			walls.push(...first);
+			walls.push(...second);
+		}
+		else {
+			let split;
+			do {
+				split = Math.floor(Math.random() * (jDim + 1)) + jCoords.x;
+			} while (split % 2);
+
+			let hole;
+			do {
+				hole = Math.floor(Math.random() * (iDim + 1)) + iCoords.x;
+			} while (!(hole % 2));
+
+			for (let i = iCoords.x; i <= iCoords.y; i++) {
+				if (i !== hole) {
+					this.maze[i][split] = 1;
+					walls.push(new Coord(i, split));
+				}
+			}
+
+			let first = this.divide(
+				iCoords,
+				new Coord(jCoords.x, split - 1),
+				this.getOrientation(iDim, split - jCoords.x - 1)
+			);
+			let second = this.divide(
+				iCoords,
+				new Coord(split + 1, jCoords.y),
+				this.getOrientation(jCoords.x - split - 1)
+			);
+			walls.push(...first);
+			walls.push(...second);
+		}
+
+		return walls;
+	}
+
+	getOrientation(iDim, jDim) {
+		if (iDim < jDim) return "v";
+		else if (jDim < iDim) return "h";
+		else return Math.floor(Math.random() * 2) ? "h" : "v";
+	}
+
+	generate() {
+		let walls = [];
+
+		for (let i = 0; i < this.height; i++) {
+			this.maze.push([]);
+			for (let j = 0; j < this.width; j++) {
+				this.maze[i][j] = 0;
+				if (i === 0 || j === 0 || i === this.height - 1 || j === this.width - 1) {
+					this.maze[i][j] = 1;
+					walls.push(new Coord(i, j));
+				}
+			}
+		}
+
+		let insideWalls = this.divide(
+			new Coord(1, this.height - 2),
+			new Coord(1, this.width - 2),
+			this.getOrientation(1, 1)
+		);
+		walls.push(...insideWalls);
+
+		intervalMaze = setInterval(() => {
+			if (walls.length === 0) {
+				clearInterval(intervalMaze);
+			}
+			else {
+				let cell = walls.shift();
+				this.grid.putWall(cell);
+			}
+		}, 10)
+	}
+}
