@@ -2,8 +2,15 @@
 
 $main-color: #DA3131;
 $second-color: #2f222e;
-$back-color: #161616;
+$back-color: #151529;
 $font-color: #e6e6e6;
+
+$btn-color: #21262d;
+$btn-bd-color: #3d3d3e;
+$btn-font-color: #c9d1d9;
+$btn-color-hv: #30363d;
+$btn-bd-color-hv: #8b949e;
+$btn-dgr-color: #a73630;
 
 $border-color: $back-color;
 $cell-color: #e7e7e7;
@@ -60,7 +67,17 @@ h1, h2, h3, h4, h5, h6 {
 	fill: $main-color;
 	word-break: break-word;
 }
-
+h1 {
+	font-weight: 800;
+	text-align: center;
+}
+h2 {
+	font-size: 16pt;
+	text-align: center;
+}
+hr {
+	border-color: $btn-bd-color;
+}
 
 .wrapper {
 	width: 100%;
@@ -77,6 +94,8 @@ h1, h2, h3, h4, h5, h6 {
 	.grid {
 		border-collapse: collapse;
 		background-color: $cell-color;
+		border-radius: 15px;
+		overflow: hidden;
 		td {
 			//border: 1px solid $border-color;
 		}
@@ -163,23 +182,44 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 5px 20px;
 	height: 100%;
 	width: $menu-size;
-	select {
+	select, button {
 		cursor: pointer;
 		margin-bottom: 15px;
+		border: 1px solid $btn-bd-color;
+		border-radius: 5px;
+		background-color: $btn-color;
+		color: $btn-font-color;
+		font-size: 12pt;
+		font-weight: 600;
+		transition: all 150ms ease;
+		&:hover {
+			border-color: $btn-bd-color-hv;
+			background-color: $btn-color-hv;
+		}
+	}
+	select {
 		padding: 7px 40px 7px 12px;
 		width: 100%;
-		border: 1px solid #e8eaed;
-		border-radius: 5px;
-		background: #fff;
+		border: 1px solid $btn-bd-color;
 		box-shadow: 0 1px 3px -2px #9098a9;
-		font-size: 16px;
-		transition: all 150ms ease;
 	}
 	button {
-		cursor: pointer;
-		margin-bottom: 15px;
+		padding: 0.4rem 0.3rem;
 		width: 100%;
-		border: 1px solid #e8eaed;
-		border-radius: 5px;
+		color: $btn-font-color;
+		> * {
+			vertical-align: middle;
+		}
+		svg {
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			margin-right: 5px;
+		}
+	}
+	.btn-dgr {
+		color: white;
+		fill: white;
+		background-color: $btn-dgr-color;
 	}
 }
