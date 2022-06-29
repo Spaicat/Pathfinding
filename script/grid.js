@@ -14,16 +14,9 @@ class Grid {
 		this.drawGrid();
 		this.addEvent();
 
-		// this.start = new Coord(
-		// 	(Math.floor(height / 2) - (Math.floor(height / 2) % 2) + 1),
-		// 	Math.floor(width / 4) - (Math.floor(width / 4) % 2) + 1
-		// );
-		// this.end = new Coord(
-		// 	(Math.floor(height / 2) - (Math.floor(height / 2) % 2) + 1),
-		// 	Math.floor(width / 1.25) - (Math.floor(width / 1.25) % 2) + 1
-		// );
 		this.start = new Coord(1, 1);
 		this.end = new Coord(this.height - 2, this.width - 2);
+		console.warn(this.end);
 		this.putStart(this.start);
 		this.putEnd(this.end);
 
@@ -143,8 +136,10 @@ class Grid {
 		clearInterval(intervalSearch);
 		this.array.forEach((line) => {
 			line.forEach((cell) => {
-				if (cell.classList.contains("visited") || cell.classList.contains("path"))
-					cell.className = "";
+				if (cell.classList.contains("visited"))
+					cell.classList.remove("visited");
+				else (cell.classList.contains("path"))
+					cell.classList.remove("path");
 			});
 		});
 	}
@@ -225,5 +220,7 @@ class Grid {
 		let cell = this.array[coord.x][coord.y];
 		if (cell.className === "visited")
 			this.putClass(coord, "path");
+		else if (cell.className === "start" || cell.className === "end")
+			cell.classList.add("path");
 	}
 }

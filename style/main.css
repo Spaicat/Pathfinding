@@ -6,7 +6,7 @@
 html,
 body {
   display: block;
-  background-color: #151529;
+  background-color: #09090c;
   color: #e6e6e6;
   fill: #e6e6e6;
   font-size: 20px;
@@ -107,11 +107,15 @@ hr {
   border: 1px solid #494949;
   animation: classicAppear ease-out 0.25s;
 }
+.layout .grid .start, .layout .grid .end {
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .layout .grid .start {
-  background-color: #5ad47f;
+  background-image: url("../media/start.svg");
 }
 .layout .grid .end {
-  background-color: #da4c53;
+  background-image: url("../media/end.svg");
 }
 @keyframes classicAppear {
   from {
@@ -196,6 +200,7 @@ hr {
   color: white;
   fill: white;
   background-color: #a73630;
+  border-color: #d73a31;
 }
 
 /*# sourceMappingURL=main.css.map */

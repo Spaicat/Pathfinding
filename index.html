@@ -9,18 +9,6 @@
 <body>
 	<header class="header">
 		<h1>Path&Maze</h1>
-		<h2>Path Finder Algorithms</h2>
-		<select name="path" id="path">
-			<option value="BreadthFirst">Breadth First (Dijkstra)</option>
-			<option value="GreedyBestFirst">Greedy Best First</option>
-			<option value="Astar">A*</option>
-		</select>
-		<button onclick="search()">
-			<svg viewBox="0 0 513.749 513.749" width="512" height="512">
-				<path d="M504.352,459.061l-99.435-99.477c74.402-99.427,54.115-240.344-45.312-314.746S119.261-9.277,44.859,90.15 S-9.256,330.494,90.171,404.896c79.868,59.766,189.565,59.766,269.434,0l99.477,99.477c12.501,12.501,32.769,12.501,45.269,0 c12.501-12.501,12.501-32.769,0-45.269L504.352,459.061z M225.717,385.696c-88.366,0-160-71.634-160-160s71.634-160,160-160 s160,71.634,160,160C385.623,314.022,314.044,385.602,225.717,385.696z"/>
-			</svg>
-			<span>Search</span>
-		</button>
 		<h2>Maze Builder Algorithms</h2>
 		<select name="maze" id="maze">
 			<option value="Kruskal">Kruskal</option>
@@ -42,6 +30,18 @@
 				<path d="M416,0h53.333C492.898,0,512,19.103,512,42.667V96c0,23.564-19.102,42.667-42.667,42.667H416 c-23.564,0-42.667-19.103-42.667-42.667V42.667C373.333,19.103,392.436,0,416,0z"/>
 			</svg>
 			<span>Build</span>
+		</button>
+		<h2>Path Finder Algorithms</h2>
+		<select name="path" id="path">
+			<option value="BreadthFirst">Breadth First (Dijkstra)</option>
+			<option value="GreedyBestFirst">Greedy Best First</option>
+			<option value="Astar">A*</option>
+		</select>
+		<button onclick="search()">
+			<svg viewBox="0 0 513.749 513.749" width="512" height="512">
+				<path d="M504.352,459.061l-99.435-99.477c74.402-99.427,54.115-240.344-45.312-314.746S119.261-9.277,44.859,90.15 S-9.256,330.494,90.171,404.896c79.868,59.766,189.565,59.766,269.434,0l99.477,99.477c12.501,12.501,32.769,12.501,45.269,0 c12.501-12.501,12.501-32.769,0-45.269L504.352,459.061z M225.717,385.696c-88.366,0-160-71.634-160-160s71.634-160,160-160 s160,71.634,160,160C385.623,314.022,314.044,385.602,225.717,385.696z"/>
+			</svg>
+			<span>Search</span>
 		</button>
 		<hr />
 		<button class="btn-dgr" onclick="clearAll()">

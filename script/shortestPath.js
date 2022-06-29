@@ -15,6 +15,7 @@ class ShortestPath {
 		const drawPath = () => {
 			let listPath = [];
 			let currentPath = this.end;
+			listPath.unshift(currentPath);
 			if (found) {
 				while(!Coord.isEqual(currentPath, this.start)) {
 					currentPath = predOfCells[this.coordToKey(currentPath)];
@@ -171,6 +172,8 @@ class GreedyBestFirst extends ShortestPath {
 					let priority = this.heuristic(next, this.end);
 					priorityQueue.push([priority, next]);
 					if (Coord.isEqual(next, this.end)) {
+						listVisited.push(next);
+						predOfCells[coordKey] = current;
 						found = true;
 						break;
 					}

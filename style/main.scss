@@ -2,7 +2,7 @@
 
 $main-color: #DA3131;
 $second-color: #2f222e;
-$back-color: #151529;
+$back-color: #09090c;
 $font-color: #e6e6e6;
 
 $btn-color: #21262d;
@@ -11,6 +11,7 @@ $btn-font-color: #c9d1d9;
 $btn-color-hv: #30363d;
 $btn-bd-color-hv: #8b949e;
 $btn-dgr-color: #a73630;
+$btn-dgr-bd-color: #d73a31;
 
 $border-color: $back-color;
 $cell-color: #e7e7e7;
@@ -131,11 +132,17 @@ hr {
 			border: 1px solid $wall-bd-color;
 			animation: classicAppear ease-out .25s;
 		}
+		.start, .end {
+			background-position: center;
+			background-repeat: no-repeat;
+		}
 		.start {
-			background-color: $start-color;
+			// background-color: $start-color;
+			background-image: url("../media/start.svg");
 		}
 		.end {
-			background-color: $end-color;
+			// background-color: $end-color;
+			background-image: url("../media/end.svg");
 		}
 		@keyframes classicAppear {
 			from {
@@ -221,5 +228,6 @@ hr {
 		color: white;
 		fill: white;
 		background-color: $btn-dgr-color;
+		border-color: $btn-dgr-bd-color;
 	}
 }
