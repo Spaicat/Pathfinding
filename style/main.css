@@ -160,6 +160,14 @@ hr {
   padding: 5px 20px;
   height: 100%;
   width: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.header::-webkit-scrollbar {
+  display: none;
+  background: transparent;
 }
 .header select, .header button {
   cursor: pointer;

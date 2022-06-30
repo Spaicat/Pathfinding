@@ -189,6 +189,14 @@ hr {
 	padding: 5px 20px;
 	height: 100%;
 	width: $menu-size;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+		background: transparent;
+	}
 	select, button {
 		cursor: pointer;
 		margin-bottom: 15px;
