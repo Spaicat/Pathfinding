@@ -13,9 +13,8 @@ Pathfinding & Maze generator visualizer 🗺️
 
 Project available ➤ [spaicat.github.io/pathfinding/](https://spaicat.github.io/pathfinding/)
 
-<p align="center">
-![Thumbnail](raw.githubusercontent.com/spaicat/pathfinding/master/.docs/thumbnail.png)
-</p>   
+
+<img align="center" src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/thumbnail.png" />
 
 ## Features
 
