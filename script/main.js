@@ -32,16 +32,16 @@ window.onload = () => {
 }
 
 search = () => {
-	const pathFinderIndex = document.querySelector("#path").selectedIndex;
+	const pathFinderVal = document.querySelector("#path").value;
 
-	switch (pathFinderIndex) {
-		case 0:
+	switch (pathFinderVal) {
+		case "BreadthFirst":
 			pathFinderAlgo = BreadthFirst;
 			break;
-		case 1:
+		case "GreedyBestFirst":
 			pathFinderAlgo = GreedyBestFirst;
 			break;
-		case 2:
+		case "AStar":
 			pathFinderAlgo = AStar;
 			break;
 	}
@@ -50,22 +50,22 @@ search = () => {
 }
 
 build = () => {
-	const mazeGeneratorIndex = document.querySelector("#maze").selectedIndex;
+	const mazeGeneratorVal = document.querySelector("#maze").value;
 
-	switch (mazeGeneratorIndex) {
-		case 0:
+	switch (mazeGeneratorVal) {
+		case "Kruskal":
 			mazeGeneratorAlgo = Kruskal;
 			break;
-		case 1:
+		case "Prim":
 			mazeGeneratorAlgo = Prim;
 			break;
-		case 2:
+		case "RecursiveBacktracker":
 			mazeGeneratorAlgo = RecursiveBacktracker;
 			break;
-		case 3:
+		case "RecursiveDivision":
 			mazeGeneratorAlgo = RecursiveDivision;
 			break;
-		case 4:
+		case "BinaryTree":
 			mazeGeneratorAlgo = BinaryTree;
 			break;
 	}
