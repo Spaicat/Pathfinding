@@ -7,12 +7,6 @@ class Maze {
 		this.height = grid.height;
 		this.start = grid.start;
 		this.end = grid.end;
-
-		// Make dimensions odd
-		/*width -= width % 2;
-		width++;
-		height -= height % 2;
-		height++;*/
 	}
 
 	shuffle(array) {

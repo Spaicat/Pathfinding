@@ -99,7 +99,6 @@ class AStar extends ShortestPath {
 
 		while (!priorityQueue.isEmpty() && !found) {
 			let current = priorityQueue.pop()[1];
-			//console.log(this.grid.getDOMCell(current));
 
 			if (Coord.isEqual(current, this.end))
 				break;

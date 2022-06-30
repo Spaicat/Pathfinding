@@ -16,7 +16,6 @@ class Grid {
 
 		this.start = new Coord(1, 1);
 		this.end = new Coord(this.height - 2, this.width - 2);
-		console.warn(this.end);
 		this.putStart(this.start);
 		this.putEnd(this.end);
 
@@ -46,6 +45,7 @@ class Grid {
 			else {
 				this.typeSelected = "wall";
 				this.cellSelected = this.getCellCoord(event);
+				this.clearPath();
 				this.putWall(this.cellSelected);
 			}
 			grid.findPath(this.algo);
@@ -136,10 +136,11 @@ class Grid {
 		clearInterval(intervalSearch);
 		this.array.forEach((line) => {
 			line.forEach((cell) => {
-				if (cell.classList.contains("visited"))
-					cell.classList.remove("visited");
-				else (cell.classList.contains("path"))
-					cell.classList.remove("path");
+				let currentCell = cell.classList;
+				if (currentCell.contains("visited"))
+					currentCell.remove("visited");
+				else if (currentCell.contains("path"))
+					currentCell.remove("path");
 			});
 		});
 	}
@@ -198,8 +199,6 @@ class Grid {
 		this.end = coord;
 	}
 	putWall(coord) {
-		this.clearPath();
-
 		let cell = this.array[coord.x][coord.y];
 		if (cell.classList.contains("wall"))
 			cell.classList.remove("wall");
