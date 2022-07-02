@@ -37,28 +37,25 @@ Project available ➤ [spaicat.github.io/Pathfinding/](https://spaicat.github.io
 	<img width="200" src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/menu.gif" />
 </div>
 
-Choose the maze generator algorithm and click on "Build" to generate the maze.
-
-Choose the path finder algorithm and click on "Search" to find the path between start and finish.
-
-Erase the path and walls with the "Clear" button
+- Choose the maze generator algorithm and click on `Build` to generate the maze.
+- Choose the path finder algorithm and click on `Search` to find the path between start and finish.
+- Erase the path and walls with the `Clear` button
 
 ### Place and erase wall
 
-<div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2;">
-	<div>
-		<p>Place wall by clicking on an empty spot of the grid</p>
-		<img src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/place_wall.gif" />
-	</div>
-	<div>
-		<p>Remove wall by clicking on a wall in the grid</p>
-		<img src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/remove_wall.gif" />
-	</div>
+- Place wall by clicking on an empty spot of the grid
+<div align="center">
+	<img width="300" src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/place_wall.gif" />
+</div>
+
+- Remove wall by clicking on a wall in the grid
+<div align="center">
+	<img width="300" src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/remove_wall.gif" />
 </div>
 
 ### Move start and end
 
-Click and drag the start or end icons to move them.
+- Click and drag the start or end icons to move them.
 
 <div align="center">
 	<img width="300" src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/start_end.png" />
