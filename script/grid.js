@@ -42,6 +42,12 @@ class Grid {
 			else if (event.target.classList.contains("end")) {
 				this.typeSelected = "end";
 			}
+			else if (event.target.classList.contains("wall")) {
+				this.typeSelected = "empty";
+				this.cellSelected = this.getCellCoord(event);
+				this.clearPath();
+				this.removeWall(this.cellSelected);
+			}
 			else {
 				this.typeSelected = "wall";
 				this.cellSelected = this.getCellCoord(event);
@@ -66,6 +72,9 @@ class Grid {
 					}
 					else if (this.typeSelected == "wall") {
 						this.putWall(this.cellSelected);
+					}
+					else if (this.typeSelected == "empty") {
+						this.removeWall(this.cellSelected);
 					}
 					grid.findPath(this.algo);
 				}
@@ -200,9 +209,7 @@ class Grid {
 	}
 	putWall(coord) {
 		let cell = this.array[coord.x][coord.y];
-		if (cell.classList.contains("wall"))
-			cell.classList.remove("wall");
-		else if (cell.className === "")
+		if (cell.className === "")
 			this.putClass(coord, "wall");
 	}
 	removeWall(coord) {

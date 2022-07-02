@@ -9,7 +9,7 @@ let mazeGeneratorAlgo = null;
 
 window.onload = () => {
 	let wrapper = document.querySelector(".wrapper");
-	pathFinderAlgo = BreadthFirst;
+	pathFinderAlgo = GreedyBestFirst;
 	mazeGeneratorAlgo = Kruskal;
 	grid = new Grid(wrapper, currWidth, currHeight, cellSize, pathFinderAlgo);
 

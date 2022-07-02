@@ -104,7 +104,6 @@ hr {
 }
 .layout .grid .wall {
   background-color: #353535;
-  border: 1px solid #494949;
   animation: classicAppear ease-out 0.25s;
 }
 .layout .grid .start, .layout .grid .end {
@@ -119,12 +118,12 @@ hr {
 }
 @keyframes classicAppear {
   from {
-    transform: scale(0.3);
-    opacity: 0.25;
+    transform: scale(1.3);
+    border-color: transparent;
   }
   to {
     transform: scale(1);
-    opacity: 1;
+    border-color: #494949;
   }
 }
 @keyframes visitedAnimTranslate {
