@@ -43,14 +43,14 @@ Project available ➤ [spaicat.github.io/Pathfinding/](https://spaicat.github.io
 
 ### Place and erase wall
 
-- Place wall by clicking on an empty spot of the grid
+- Place walls by clicking on an empty spot of the grid
 <div align="center">
-	<img width="300" src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/place_wall.gif" />
+	<img width="400" src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/place_wall.gif" />
 </div>
 
-- Remove wall by clicking on a wall in the grid
+- Remove walls by clicking on a wall in the grid
 <div align="center">
-	<img width="300" src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/remove_wall.gif" />
+	<img width="400" src="https://raw.githubusercontent.com/spaicat/pathfinding/master/.github/remove_wall.gif" />
 </div>
 
 ### Move start and end

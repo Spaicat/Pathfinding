@@ -186,7 +186,7 @@ class Prim extends Maze {
 			}
 			else {
 				let cell = visited.shift();
-				this.grid.putWall(cell);
+				this.grid.removeWall(cell);
 			}
 		}, 10);
 	}
